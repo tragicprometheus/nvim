@@ -37,3 +37,12 @@ NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.
 ### Plugins to look at:
 
 - [code biscuits](https://github.com/code-biscuits/nvim-biscuits)
+
+### Features to Add:
+
+Code support for:
+- C
+- Lua (obviously)
+- Python
+
+LSP, auto-complete, etc.
