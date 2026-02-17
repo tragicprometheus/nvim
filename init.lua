@@ -47,6 +47,7 @@ require("config.autocmd")
 
 -- require("plugins.autopairs")
 require("plugins.barbar")
+require("plugins.colorscheme")
 require("plugins.comment")
 -- require("plugins.fterm")
 -- require("plugins.fzf-lua")

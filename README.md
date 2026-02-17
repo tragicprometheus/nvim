@@ -31,6 +31,5 @@ NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.
     │   └── autocmd.lua
     └── plugins
         ├── <plugin-name>.lua
-        └── configs.lua
 ```
 
