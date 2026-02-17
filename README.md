@@ -12,6 +12,7 @@ cd ~/.config/ && git clone https://github.com/BreadOnPenguins/nvim
     * To add or remove plugins, modify the `Plug()` section in `init.lua` appropriately, and ensure to modify `require()` as needed for configuration.
     * Then run `:PlugInstall` to install or `:PlugClean` to uninstall
 
+> [!NOTE] to actually use the startup screen, you cannot open nvim to a directory!
 <br>
 
 **Plugin Manager**
@@ -33,3 +34,6 @@ NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.
         ├── <plugin-name>.lua
 ```
 
+### Plugins to look at:
+
+- [code biscuits](https://github.com/code-biscuits/nvim-biscuits)

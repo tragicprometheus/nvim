@@ -74,4 +74,3 @@ require("plugins.twilight")
 require("plugins.which-key")
 end, 100)
 
--- load_theme()
