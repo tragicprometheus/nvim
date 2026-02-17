@@ -1,7 +1,9 @@
--- bread's neovim config
--- keymaps are in lua/config/mappings.lua
+-- tragicprometheus' nvim config
+-- heavily inspired by :
+--	BreadOnPenguins (https://github.com/BreadOnPenguins/nvim)
+-- 	kickstart.nvim (https://github.com/nvim-lua/kickstart.nvim)
+-- keymaps are in lua/config/keymaps.lua
 -- install a patched font & ensure your terminal supports glyphs
--- enjoy :D
 
 -- auto install vim-plug and plugins, if not found
 local data_dir = vim.fn.stdpath('data')
@@ -18,41 +20,33 @@ vim.g.start_time = vim.fn.reltime()
 vim.loader.enable() --  SPEEEEEEEEEEED 
 vim.call('plug#begin')
 
-Plug('catppuccin/nvim', { ['as'] = 'catppuccin' }) --colorscheme
-Plug('ellisonleao/gruvbox.nvim', { ['as'] = 'gruvbox' }) --colorscheme 2
-Plug('uZer/pywal16.nvim', { [ 'as' ] = 'pywal16' }) --or, pywal colorscheme
+Plug('ellisonleao/gruvbox.nvim', { ['as'] = 'gruvbox' }) --colorscheme
 Plug('nvim-lualine/lualine.nvim') --statusline
 Plug('nvim-tree/nvim-web-devicons') --pretty icons
 Plug('folke/which-key.nvim') --mappings popup
 Plug('romgrk/barbar.nvim') --bufferline
-Plug('goolord/alpha-nvim') --pretty startup
 Plug('nvim-treesitter/nvim-treesitter') --improved syntax
 Plug('mfussenegger/nvim-lint') --async linter
 Plug('nvim-tree/nvim-tree.lua') --file explorer
 Plug('windwp/nvim-autopairs') --autopairs 
 Plug('lewis6991/gitsigns.nvim') --git
 Plug('numToStr/Comment.nvim') --easier comments
-Plug('norcalli/nvim-colorizer.lua') --color highlight
 Plug('ibhagwan/fzf-lua') --fuzzy finder and grep
 Plug('numToStr/FTerm.nvim') --floating terminal
 Plug('ron-rs/ron.vim') --ron syntax highlighting
 Plug('MeanderingProgrammer/render-markdown.nvim') --render md inline
 Plug('emmanueltouzery/decisive.nvim') --view csv files
-Plug('folke/twilight.nvim') --surrounding dim
+Plug('folke/twilight.nvim') --surrounding dim TODO: test this
 
 vim.call('plug#end')
 
 -- move config and plugin config to alternate files
-require("config.theme")
-require("config.mappings")
+require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 
-require("plugins.alpha")
 -- require("plugins.autopairs")
 require("plugins.barbar")
-require("plugins.colorizer")
-require("plugins.colorscheme")
 require("plugins.comment")
 -- require("plugins.fterm")
 -- require("plugins.fzf-lua")
@@ -78,4 +72,4 @@ require("plugins.twilight")
 require("plugins.which-key")
 end, 100)
 
-load_theme()
+-- load_theme()

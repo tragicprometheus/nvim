@@ -76,6 +76,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 end,
 })
 
+-- TODO figure out what this does.
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local startuptime = vim.fn.reltimefloat(vim.fn.reltime(vim.g.start_time))
@@ -83,6 +84,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+-- TODO figure out what this does.
 vim.api.nvim_create_augroup("alpha_on_empty", { clear = true })
 vim.api.nvim_create_autocmd("User", {
 	pattern = "BDeletePre *",
@@ -96,7 +98,7 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
-
+-- Sets line numbers to be relative when not in insert mode
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
    pattern = "*",
    group = augroup,
@@ -107,6 +109,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "Cmdline
    end,
 })
 
+-- Sets line numbers to be absolute when in insert mode, or when focus is lost
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
    pattern = "*",
    group = augroup,
@@ -121,3 +124,9 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
       end
    end,
 })
+
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time. TODO: Check this
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
