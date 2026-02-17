@@ -21,6 +21,7 @@ vim.loader.enable() --  SPEEEEEEEEEEED 
 vim.call('plug#begin')
 
 Plug('ellisonleao/gruvbox.nvim', { ['as'] = 'gruvbox' }) --colorscheme
+Plug('goolord/alpha-nvim') -- startup page
 Plug('nvim-lualine/lualine.nvim') --statusline
 Plug('nvim-tree/nvim-web-devicons') --pretty icons
 Plug('folke/which-key.nvim') --mappings popup
@@ -33,7 +34,6 @@ Plug('lewis6991/gitsigns.nvim') --git
 Plug('numToStr/Comment.nvim') --easier comments
 Plug('ibhagwan/fzf-lua') --fuzzy finder and grep
 Plug('numToStr/FTerm.nvim') --floating terminal
-Plug('ron-rs/ron.vim') --ron syntax highlighting
 Plug('MeanderingProgrammer/render-markdown.nvim') --render md inline
 Plug('emmanueltouzery/decisive.nvim') --view csv files
 Plug('folke/twilight.nvim') --surrounding dim TODO: test this
@@ -45,6 +45,7 @@ require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 
+require("plugins.alpha")
 -- require("plugins.autopairs")
 require("plugins.barbar")
 require("plugins.colorscheme")
