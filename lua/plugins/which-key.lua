@@ -3,7 +3,7 @@ wk.add({
 { "<leader>d", desc = "duplicate file" },
 { "<leader>u", desc = "open url" },
 { "<leader>z", desc = "floating terminal" },
-{ "<leader>f", desc = "fzf" },
+{ "<leader>f", desc = "fzf options" },
 { "<leader>g", desc = "grep" },
 { "<leader>G", desc = "grep under cursor" },
 { "<leader>x", desc = "chmod +x" },
@@ -16,7 +16,7 @@ wk.add({
 { "<leader>Q", desc = "close buf!" },
 { "<leader>U", desc = "close ALL buf" },
 { "<leader>nn", desc = "toggle relative nums" },
-{ "<leader>H", desc = "htop terminal" },
 { "<leader>T", desc = "git status" },
-{ "<leader>F", desc = "fzf opts" },
+{ "<leader>o", desc = "Open current file in default program" },
+{ "<leader>cd", desc = "Change the current working directory" },
 })

@@ -15,9 +15,6 @@ cd ~/.config/ && git clone https://github.com/BreadOnPenguins/nvim
 > [!NOTE] to actually use the startup screen, you cannot open nvim to a directory!
 <br>
 
-**Plugin Manager**
-[vim-plug](https://github.com/junegunn/vim-plug) is a minimal option
-
 **Plugins** 
 NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.com/rockerBOO/awesome-neovim)
 
@@ -25,6 +22,8 @@ NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.
 ```
 ~/.config/nvim/
 ├── init.lua
+├── nvim-pack-lock.json
+├── README.md (this file)
 └── lua
     ├── config
     │   ├── keymaps.lua
@@ -33,6 +32,22 @@ NOTE: Check a bunch more out here: [Awesome neovim plugins list](https://github.
     └── plugins
         ├── <plugin-name>.lua
 ```
+
+### Current Plugins
+
+- ellisonleao/gruvbox.nvim
+- ibhagwan/fzf-lua
+- folke/which-key.nvim
+- romgrk/barbar.nvim
+- nvim-tree/nvim-web-devicons
+- nvim-lualine/lualine.nvim
+- lewis6991/gitsigns.nvim
+- nvim-tree/nvim-tree.lua
+
+### Custom Behaviors
+
+- [C-z] to bring up native terminal in new buffer and go directly into insert mode
+- when in terminal <Esc><Esc> closes the terminal buffer
 
 ### Plugins to look at:
 

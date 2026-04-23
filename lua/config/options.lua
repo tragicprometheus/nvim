@@ -2,10 +2,10 @@ local options = {
 	laststatus = 3,
 	ruler = false, --disable extra numbering
 	showmode = false, --not needed due to lualine
-	showcmd = false,
+	showcmd = true,
 	wrap = true, --toggle bound to leader W
 	mouse = "a", --enable mouse
-	clipboard = "unnamedplus", --system clipboard integration
+	-- clipboard = "unnamedplus", --system clipboard integration
 	history = 100, --command line history
 	swapfile = false, --swap just gets in the way, usually
 	backup = false,
@@ -14,15 +14,20 @@ local options = {
 	ttyfast = true, --faster scrolling
 	smoothscroll = true,
 	title = true, --automatic window titlebar
+	titlestring = "%{getcwd()}",
+	scrolloff = 20,
 	
 	number = true, --numbering lines
 	relativenumber = true, --toggle bound to leader nn
 	numberwidth = 4,
 
+	list = true,
+	listchars = { tab = '» ', trail = '·', nbsp = '␣' },
 	smarttab = true, --indentation stuff
 	cindent = true,
-	autoindent = false,
+	autoindent = true,
 	tabstop = 4, --visual width of tab
+	breakindent = true,
 
 	foldmethod = "expr",
 	foldlevel = 99, --disable folding, lower #s enable
@@ -37,6 +42,8 @@ local options = {
 	concealcursor = "nc",
 
 	splitkeep = 'screen', --stablizie window open/close
+	splitright = true,
+	splitbelow = true,
 }
 
 for k, v in pairs(options) do

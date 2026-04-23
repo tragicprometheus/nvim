@@ -43,21 +43,39 @@ map("n", "<F7>", ":vertical resize +2<CR>")
 map("n", "<F8>", ":vertical resize -2<CR>")
 
 -- fzf and grep
-map("n", "<leader>f", ":lua require('fzf-lua').files()<CR>") --search cwd
-map("n", "<leader>Fh", ":lua require('fzf-lua').files({ cwd = '~/' })<CR>") --search home
-map("n", "<leader>Fc", ":lua require('fzf-lua').files({ cwd = '~/.config' })<CR>") --search .config
-map("n", "<leader>Fl", ":lua require('fzf-lua').files({ cwd = '~/.local/src' })<CR>") --search .local/src
-map("n", "<leader>Ff", ":lua require('fzf-lua').files({ cwd = '..' })<CR>") --search above
-map("n", "<leader>Fr", ":lua require('fzf-lua').resume()<CR>") --last search
+map("n", "<leader>ff", ":lua require('fzf-lua').files()<CR>") --search cwd
+map("n", "<leader>fh", ":lua require('fzf-lua').files({ cwd = '~/' })<CR>") --search home
+map("n", "<leader>fp", ":lua require('fzf-lua').files({ cwd = '~/Documents/01_Projects' })<CR>") --search Projects
+map("n", "<leader>fd", ":lua require('fzf-lua').files({ cwd = '~/Documents/02_Documents' })<CR>") --search Documents
+if is_windows then
+map("n", "<leader>fc", ":lua require('fzf-lua').files({ cwd = '$LOCALAPPDATA/nvim' })<CR>") --search nvim config
+elseif is_linux then
+map("n", "<leader>fc", ":lua require('fzf-lua').files({ cwd = '~/.config' })<CR>") --search .config
+map("n", "<leader>fl", ":lua require('fzf-lua').files({ cwd = '~/.local/src' })<CR>") --search .local/src
+end
+map("n", "<leader>fu", ":lua require('fzf-lua').files({ cwd = '..' })<CR>") --search above
+map("n", "<leader>fr", ":lua require('fzf-lua').resume()<CR>") --last search
 map("n", "<leader>g", ":lua require('fzf-lua').grep()<CR>") --grep
 map("n", "<leader>G", ":lua require('fzf-lua').grep_cword()<CR>") --grep word under cursor
+
+-- change cwd
+map("n", "<leader>cd", function()
+		local current = vim.fn.getcwd()
+		local newdir = vim.fn.input("change cwd to: ", current, "dir")
+		if newdir ~= nil and newdir ~= "" then
+				vim.cmd("cd " .. vim.fn.fnameescape(newdir))
+				print("cwd changed to : " .. vim.fn.getcwd())
+		else
+				print("cwd unchanged")
+		end
+end, { desc = "Prompt to change current working directory" })
+
 
 -- misc
 -- map("n", "<leader>s", ":%s//g<Left><Left>") --replace all
 map("n", "<leader>e", ":NvimTreeToggle<CR>") --open file explorer
-map("n", "<leader>P", ":PlugInstall<CR>") --vim-plug
-map('n', '<leader>z', ":lua require('FTerm').open()<CR>") --open term
-map('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").close()<CR>') --preserves session
+map('t', '<Esc><Esc>', [[<C-\><C-n>:bd!<CR>]]) -- exits the terminal
+map('n', '<leader>z',  ":term<CR>i") --open term
 map("n", "<leader>w", ":w<CR>") --write but one less key
 map("n", "<leader>d", ":w ") --duplicate to new name
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>") --make a file executable
@@ -67,24 +85,14 @@ map("n", "<leader>u", ':silent !xdg-open "<cWORD>" &<CR>') --open a url under cu
 map("v", "<leader>i", "=gv") --auto indent
 map("n", "<leader>W", ":set wrap!<CR>") --toggle wrap
 
--- decisive csv
-map("n", "<leader>csa", ":lua require('decisive').align_csv({})<cr>")
-map("n", "<leader>csA", ":lua require('decisive').align_csv_clear({})<cr>")
-map("n", "[c", ":lua require('decisive').align_csv_prev_col()<cr>")
-map("n", "]c", ":lua require('decisive').align_csv_next_col()<cr>")
-
-
-map("n", "<leader>H", function() --toggle htop in term
-    _G.htop:toggle()
-end)
-
+-- open current file in default program
+map("n", "<leader>o", ":lua vim.ui.open(vim.api.nvim_buf_get_name(0))<CR>")
 
 map("n", "<leader>ma", function() --quick make in dir of buffer
 	local bufdir = vim.fn.expand("%:p:h")
 	vim.cmd("lcd " .. bufdir)
 	vim.cmd("!sudo make uninstall && sudo make clean install %")
 end)
-
 
 map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
 	if vim.wo.relativenumber then

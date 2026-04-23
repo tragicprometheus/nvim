@@ -1,76 +1,83 @@
 -- tragicprometheus' nvim config
--- heavily inspired by :
---	BreadOnPenguins (https://github.com/BreadOnPenguins/nvim)
--- 	kickstart.nvim (https://github.com/nvim-lua/kickstart.nvim)
+-- heavily inspired by:
+--   BreadOnPenguins (https://github.com/BreadOnPenguins/nvim)
+--   kickstart.nvim (https://github.com/nvim-lua/kickstart.nvim)
 -- keymaps are in lua/config/keymaps.lua
 -- install a patched font & ensure your terminal supports glyphs
 
--- auto install vim-plug and plugins, if not found
-local data_dir = vim.fn.stdpath('data')
-if vim.fn.empty(vim.fn.glob(data_dir .. '/site/autoload/plug.vim')) == 1 then
-	vim.cmd('silent !curl -fLo ' .. data_dir .. '/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-	vim.o.runtimepath = vim.o.runtimepath
-	vim.cmd('autocmd VimEnter * PlugInstall --sync | source $MYVIMRC')
+local vim = vim
+
+-- ---------------------------------------------------------------------------
+-- OS detection (for Windows / Linux specific settings later)
+-- ---------------------------------------------------------------------------
+local uname = vim.loop.os_uname()
+is_windows = uname.sysname == "Windows_NT"
+is_linux = uname.sysname == "Linux"
+
+vim.g.have_nerd_font = true
+-- Optional: Windows-friendly shell configuration (PowerShell example)
+if is_windows then
+  vim.opt.shell = "bash.exe"
+  vim.opt.shellcmdflag = "-i -l"
+  vim.opt.shellquote = '"'
+  vim.opt.shellxquote = ""
 end
 
-local vim = vim
-local Plug = vim.fn['plug#']
+-- Global Stuff
+  vim.g.start_time = vim.fn.reltime()
+  vim.loader.enable() --  SPEEEEEEEEEEED 
 
-vim.g.start_time = vim.fn.reltime()
-vim.loader.enable() --  SPEEEEEEEEEEED 
-vim.call('plug#begin')
+vim.pack.add({
+    {
+		src = "https://github.com/ellisonleao/gruvbox.nvim",
+		version = vim.version.range('2.0.0'),
+    },
+	{
+		src = "https://github.com/ibhagwan/fzf-lua",
+	},
+	{
+		src = "https://github.com/folke/which-key.nvim",
+	},
+	{
+		src = "https://github.com/romgrk/barbar.nvim",
+	},
+	{
+		src = "https://github.com/nvim-tree/nvim-web-devicons",
+	},
+	{
+		src = "https://github.com/nvim-lualine/lualine.nvim",
+    },
+    {
+		src = "https://github.com/lewis6991/gitsigns.nvim",
+    },
+	{
+		src = "https://github.com/nvim-tree/nvim-tree.lua",
+	},
+})
 
-Plug('ellisonleao/gruvbox.nvim', { ['as'] = 'gruvbox' }) --colorscheme
-Plug('goolord/alpha-nvim') -- startup page
-Plug('nvim-lualine/lualine.nvim') --statusline
-Plug('nvim-tree/nvim-web-devicons') --pretty icons
-Plug('folke/which-key.nvim') --mappings popup
-Plug('romgrk/barbar.nvim') --bufferline
-Plug('nvim-treesitter/nvim-treesitter') --improved syntax
-Plug('mfussenegger/nvim-lint') --async linter
-Plug('nvim-tree/nvim-tree.lua') --file explorer
-Plug('windwp/nvim-autopairs') --autopairs 
-Plug('lewis6991/gitsigns.nvim') --git
-Plug('numToStr/Comment.nvim') --easier comments
-Plug('ibhagwan/fzf-lua') --fuzzy finder and grep
-Plug('numToStr/FTerm.nvim') --floating terminal
-Plug('MeanderingProgrammer/render-markdown.nvim') --render md inline
-Plug('emmanueltouzery/decisive.nvim') --view csv files
-Plug('folke/twilight.nvim') --surrounding dim TODO: test this
-
-vim.call('plug#end')
-
--- move config and plugin config to alternate files
+--   Plug("nvim-treesitter/nvim-treesitter")           -- improved syntax
+--   Plug("mfussenegger/nvim-lint")                    -- async linter
+--   Plug("windwp/nvim-autopairs")                     -- autopairs
+--   Plug("numToStr/Comment.nvim")                     -- easier comments
+-- ---------------------------------------------------------------------------
+-- Load core configuration
+-- ---------------------------------------------------------------------------
 require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 
-require("plugins.alpha")
+-- ---------------------------------------------------------------------------
+-- Plugin-specific configuration
+-- ---------------------------------------------------------------------------
 -- require("plugins.autopairs")
 require("plugins.barbar")
 require("plugins.colorscheme")
-require("plugins.comment")
--- require("plugins.fterm")
--- require("plugins.fzf-lua")
+-- require("plugins.comment")
+require("plugins.fzf-lua")
 require("plugins.gitsigns")
 require("plugins.lualine")
-require("plugins.nvim-lint")
--- require("plugins.nvim-tree")
-require("plugins.render-markdown")
--- require("plugins.treesitter")
--- require("plugins.twilight")
--- require("plugins.which-key")
-
-vim.defer_fn(function() 
-		--defer non-essential configs,
-		--purely for experimental purposes:
-		--this only makes a difference of +-10ms on initial startup
-require("plugins.autopairs")
-require("plugins.fterm")
-require("plugins.fzf-lua")
+-- require("plugins.nvim-lint")
 require("plugins.nvim-tree")
-require("plugins.treesitter")
-require("plugins.twilight")
+-- require("plugins.treesitter")
 require("plugins.which-key")
-end, 100)
 
