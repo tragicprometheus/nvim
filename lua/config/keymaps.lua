@@ -70,7 +70,6 @@ map("n", "<leader>cd", function()
 		end
 end, { desc = "Prompt to change current working directory" })
 
-
 -- misc
 -- map("n", "<leader>s", ":%s//g<Left><Left>") --replace all
 map("n", "<leader>e", ":NvimTreeToggle<CR>") --open file explorer

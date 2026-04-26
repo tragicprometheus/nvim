@@ -12,15 +12,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 
 -- auto-create missing dirs when saving a file
---vim.api.nvim_create_autocmd("BufWritePre", {
---	pattern = "*",
---	callback = function()
---	local dir = vim.fn.expand("<afile>:p:h")
---	if vim.fn.isdirectory(dir) == 0 then
---		vim.fn.mkdir(dir, "p")
---	end
---end,
---})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function()
+	local dir = vim.fn.expand("<afile>:p:h")
+	if vim.fn.isdirectory(dir) == 0 then
+		vim.fn.mkdir(dir, "p")
+	end
+end,
+})
 
 
 -- linting when file is written to
@@ -76,26 +76,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 end,
 })
 
--- TODO figure out what this does.
+-- Measures startup time
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local startuptime = vim.fn.reltimefloat(vim.fn.reltime(vim.g.start_time))
     vim.g.startup_time_ms = string.format("%.2f ms", startuptime * 1000)
   end,
-})
-
--- TODO figure out what this does.
-vim.api.nvim_create_augroup("alpha_on_empty", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-	pattern = "BDeletePre *",
-	group = "alpha_on_empty",
-	callback = function()
-		local bufnr = vim.api.nvim_get_current_buf()
-		local name = vim.api.nvim_buf_get_name(bufnr)
-		if name == "" then
-      vim.cmd([[:Alpha | bd#]])
-		end
-	end,
 })
 
 -- Sets line numbers to be relative when not in insert mode
