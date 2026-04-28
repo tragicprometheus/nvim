@@ -53,6 +53,13 @@ vim.pack.add({
 	{
 		src = "https://github.com/nvim-tree/nvim-tree.lua",
 	},
+	{
+		src = "https://github.com/windwp/nvim-autopairs",
+	},
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
+		version = 'main',
+	},
 })
 
 --   Plug("nvim-treesitter/nvim-treesitter")           -- improved syntax
@@ -69,7 +76,7 @@ require("config.autocmd")
 -- ---------------------------------------------------------------------------
 -- Plugin-specific configuration
 -- ---------------------------------------------------------------------------
--- require("plugins.autopairs")
+require("plugins.autopairs")
 require("plugins.barbar")
 require("plugins.colorscheme")
 -- require("plugins.comment")
@@ -78,6 +85,6 @@ require("plugins.gitsigns")
 require("plugins.lualine")
 -- require("plugins.nvim-lint")
 require("plugins.nvim-tree")
--- require("plugins.treesitter")
+require("plugins.treesitter")
 require("plugins.which-key")
 
