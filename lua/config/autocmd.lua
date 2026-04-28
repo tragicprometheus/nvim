@@ -113,6 +113,4 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time. TODO: Check this
-vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
-end)

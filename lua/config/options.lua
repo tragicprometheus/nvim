@@ -38,7 +38,7 @@ local options = {
 	ignorecase = true, --ignore case while searching
 	smartcase = true, --but do not ignore if caps are used
 
-	conceallevel = 1, --markdown conceal
+	conceallevel = 0, --markdown conceal
 	concealcursor = "nc",
 
 	splitkeep = 'screen', --stablizie window open/close
