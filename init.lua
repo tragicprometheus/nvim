@@ -60,18 +60,18 @@ vim.pack.add({
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		version = 'main',
 	},
+	{
+		src = 'https://github.com/neovim/nvim-lspconfig',
+	},
 })
 
---   Plug("nvim-treesitter/nvim-treesitter")           -- improved syntax
---   Plug("mfussenegger/nvim-lint")                    -- async linter
---   Plug("windwp/nvim-autopairs")                     -- autopairs
---   Plug("numToStr/Comment.nvim")                     -- easier comments
 -- ---------------------------------------------------------------------------
 -- Load core configuration
 -- ---------------------------------------------------------------------------
 require("config.keymaps")
 require("config.options")
 require("config.autocmd")
+require("config.lsp")
 
 -- ---------------------------------------------------------------------------
 -- Plugin-specific configuration
@@ -88,3 +88,7 @@ require("plugins.nvim-tree")
 require("plugins.treesitter")
 require("plugins.which-key")
 
+-- ---------------------------------------------------------------------------
+-- LSP
+-- ---------------------------------------------------------------------------
+vim.lsp.enable('clangd')
