@@ -13,7 +13,7 @@ vim.g.maplocalleader = " "
 map("n", "<S-l>", ":bnext<CR>")
 map("n", "<S-h>", ":bprevious<CR>")
 map("n", "<leader>q", ":BufferClose<CR>")
-map("n", "<leader>Q", ":BufferClose!<CR>")
+map("n", "<leader>Q", ":q<CR>")
 map("n", "<leader>U", "::bufdo bd<CR>") --close all
 map('n', '<leader>vs', ':vsplit<CR>:bnext<CR>') --ver split + open next buffer
 
