@@ -63,7 +63,11 @@ vim.pack.add({
 	{
 		src = 'https://github.com/neovim/nvim-lspconfig',
 	},
+	{
+		src = 'https://github.com/pteroctopus/faster.nvim',
+	},
 })
+
 
 -- ---------------------------------------------------------------------------
 -- Load core configuration
@@ -87,8 +91,6 @@ require("plugins.lualine")
 require("plugins.nvim-tree")
 require("plugins.treesitter")
 require("plugins.which-key")
+require("plugins.faster")
 
--- ---------------------------------------------------------------------------
--- LSP
--- ---------------------------------------------------------------------------
-vim.lsp.enable('clangd')
+

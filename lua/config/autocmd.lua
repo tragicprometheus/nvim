@@ -59,12 +59,52 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 
 -- reload files on external change
---vim.api.nvim_create_autocmd("FocusGained", {
---	pattern = "*",
---	command = "checktime",
---})
+vim.api.nvim_create_autocmd("FocusGained", {
+	pattern = "*",
+	command = "checktime",
+})
 
 
+-- -- check file size on buffer read
+-- vim.api.nvim_create_autocmd({'BufReadPre', 'FileReadPre'}, {
+--   pattern = '*',
+--   callback = disable_features_for_large_files,
+--   desc = 'Disable features for large files'
+-- })
+--
+-- -- ---------------------------------------------------------------------------
+-- -- Disable syntax highlighting and linting for large files
+-- -- ---------------------------------------------------------------------------
+-- local function disable_features_for_large_files()
+--   local max_filesize = 100 * 1024 -- 100 KB
+--   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
+--
+--   if ok and stats and stats.size > max_filesize then
+--     -- Disable syntax highlighting
+--     vim.cmd('syntax off')
+--     vim.opt_local.syntax = 'off'
+--
+--     -- Disable tree-sitter if available
+--     if vim.treesitter and vim.treesitter.stop then
+--       pcall(vim.treesitter.stop)
+--     end
+--
+--     -- Disable LSP for this buffer
+--     vim.diagnostic.disable(0)
+--     vim.defer_fn(function()
+--       vim.cmd('LspStop')
+--     end, 100)
+--
+--     -- Disable other performance-heavy features
+--     vim.opt_local.swapfile = false
+--     vim.opt_local.foldmethod = 'manual'
+--     vim.opt_local.undolevels = -1
+--
+--     -- Notify user
+--     vim.notify('Large file detected. Syntax highlighting and linting disabled.', vim.log.levels.WARN)
+--   end
+-- end
+--
 -- restore cursor pos on file open
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",

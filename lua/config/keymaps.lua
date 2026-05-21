@@ -83,6 +83,7 @@ map("n", "<leader>R", ":so %<CR>") --reload neovim config
 map("n", "<leader>u", ':silent !xdg-open "<cWORD>" &<CR>') --open a url under cursor
 map("v", "<leader>i", "=gv") --auto indent
 map("n", "<leader>W", ":set wrap!<CR>") --toggle wrap
+map("n", "<leader>g?", ":help<CR>") --toggle wrap
 
 -- open current file in default program
 map("n", "<leader>o", ":lua vim.ui.open(vim.api.nvim_buf_get_name(0))<CR>")

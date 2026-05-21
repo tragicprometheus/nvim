@@ -16,6 +16,11 @@ local options = {
 	title = true, --automatic window titlebar
 	titlestring = "%{getcwd()}",
 	scrolloff = 20,
+
+	-- spell checking
+	spell = true,
+	spelllang = en_us,
+
 	
 	number = true, --numbering lines
 	relativenumber = true, --toggle bound to leader nn

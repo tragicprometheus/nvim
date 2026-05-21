@@ -8,6 +8,10 @@
       "rev": "539d73def39c9172b4d4d769f14090e08f37b29d",
       "src": "https://github.com/romgrk/barbar.nvim"
     },
+    "faster.nvim": {
+      "rev": "2e7a50f659711854b9a7fdc76d943b59b30d7852",
+      "src": "https://github.com/pteroctopus/faster.nvim"
+    },
     "floatty.nvim": {
       "rev": "e82ae3bbe46b8e28918bcf7b9f3d5c36304e0c9f",
       "src": "https://github.com/ingur/floatty.nvim"
