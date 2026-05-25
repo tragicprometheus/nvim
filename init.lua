@@ -33,6 +33,9 @@ vim.pack.add({
 		version = vim.version.range('2.0.0'),
     },
 	{
+		src = "https://github.com/mason-org/mason.nvim",
+	},
+	{
 		src = "https://github.com/ibhagwan/fzf-lua",
 	},
 	{
@@ -54,6 +57,9 @@ vim.pack.add({
 		src = "https://github.com/nvim-tree/nvim-tree.lua",
 	},
 	{
+		src = "https://github.com/nvim-mini/mini.icons",
+	},
+	{
 		src = "https://github.com/windwp/nvim-autopairs",
 	},
 	{
@@ -66,6 +72,9 @@ vim.pack.add({
 	{
 		src = 'https://github.com/pteroctopus/faster.nvim',
 	},
+	{
+		src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
+	},
 })
 
 
@@ -76,6 +85,7 @@ require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 require("config.lsp")
+require("mason").setup()
 
 -- ---------------------------------------------------------------------------
 -- Plugin-specific configuration

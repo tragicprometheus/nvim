@@ -83,7 +83,7 @@ map("n", "<leader>R", ":so %<CR>") --reload neovim config
 map("n", "<leader>u", ':silent !xdg-open "<cWORD>" &<CR>') --open a url under cursor
 map("v", "<leader>i", "=gv") --auto indent
 map("n", "<leader>W", ":set wrap!<CR>") --toggle wrap
-map("n", "<leader>g?", ":help<CR>") --toggle wrap
+map("n", "<leader>?", ":help<CR>") -- open help
 
 -- open current file in default program
 map("n", "<leader>o", ":lua vim.ui.open(vim.api.nvim_buf_get_name(0))<CR>")
@@ -103,15 +103,3 @@ map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
 	end
 end)
 
--- LSP
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local opts = { buffer = args.buf }
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  end,
-})

@@ -64,47 +64,6 @@ vim.api.nvim_create_autocmd("FocusGained", {
 	command = "checktime",
 })
 
-
--- -- check file size on buffer read
--- vim.api.nvim_create_autocmd({'BufReadPre', 'FileReadPre'}, {
---   pattern = '*',
---   callback = disable_features_for_large_files,
---   desc = 'Disable features for large files'
--- })
---
--- -- ---------------------------------------------------------------------------
--- -- Disable syntax highlighting and linting for large files
--- -- ---------------------------------------------------------------------------
--- local function disable_features_for_large_files()
---   local max_filesize = 100 * 1024 -- 100 KB
---   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
---
---   if ok and stats and stats.size > max_filesize then
---     -- Disable syntax highlighting
---     vim.cmd('syntax off')
---     vim.opt_local.syntax = 'off'
---
---     -- Disable tree-sitter if available
---     if vim.treesitter and vim.treesitter.stop then
---       pcall(vim.treesitter.stop)
---     end
---
---     -- Disable LSP for this buffer
---     vim.diagnostic.disable(0)
---     vim.defer_fn(function()
---       vim.cmd('LspStop')
---     end, 100)
---
---     -- Disable other performance-heavy features
---     vim.opt_local.swapfile = false
---     vim.opt_local.foldmethod = 'manual'
---     vim.opt_local.undolevels = -1
---
---     -- Notify user
---     vim.notify('Large file detected. Syntax highlighting and linting disabled.', vim.log.levels.WARN)
---   end
--- end
---
 -- restore cursor pos on file open
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = "*",
@@ -154,3 +113,26 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time. TODO: Check this
   vim.opt.clipboard = 'unnamedplus'
+
+---------------------------------------------------------------------------
+-- LSP Autocommands
+---------------------------------------------------------------------------
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+    end
+
+	map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
+    map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
+    map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
+    map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
+    map('n', 'gr', vim.lsp.buf.references, 'References')
+    map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
+    map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
+    map('n', '<leader>f', function()
+      vim.lsp.buf.format({ async = true })
+    end, 'Format buffer')
+  end,
+})
