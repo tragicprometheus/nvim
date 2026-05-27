@@ -15,7 +15,7 @@ map("n", "<S-h>", ":bprevious<CR>")
 map("n", "<leader>q", ":BufferClose<CR>")
 map("n", "<leader>Q", ":q<CR>")
 map("n", "<leader>U", "::bufdo bd<CR>") --close all
-map('n', '<leader>vs', ':vsplit<CR>:bnext<CR>') --ver split + open next buffer
+map('n','<leader>vs', ':vsplit<CR>:bnext<CR>') --ver split + open next buffer
 
 -- buffer position nav + reorder
 map('n', '<AS-h>', '<Cmd>BufferMovePrevious<CR>')
@@ -71,6 +71,10 @@ map("n", "<leader>cd", function()
 end, { desc = "Prompt to change current working directory" })
 
 -- misc
+
+-- clear search highlighting
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
+
 -- map("n", "<leader>s", ":%s//g<Left><Left>") --replace all
 map("n", "<leader>e", ":NvimTreeToggle<CR>") --open file explorer
 map('t', '<Esc><Esc>', [[<C-\><C-n>:bd!<CR>]]) -- exits the terminal

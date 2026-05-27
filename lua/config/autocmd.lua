@@ -131,8 +131,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gr', vim.lsp.buf.references, 'References')
     map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
     map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
-    map('n', '<leader>f', function()
+    map('n', '<leader>F', function()
       vim.lsp.buf.format({ async = true })
     end, 'Format buffer')
+
+    -- Diagnostics
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', 'e', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', 'q', vim.diagnostic.setloclist, opts)
   end,
+})
+
+-- Auto-lint on save
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
 })

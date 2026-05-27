@@ -67,6 +67,15 @@ vim.pack.add({
 		version = 'main',
 	},
 	{
+		src = 'https://github.com/hrsh7th/nvim-cmp',
+	},
+	{
+		src = 'https://github.com/williamboman/mason-lspconfig.nvim',
+	},
+	{
+		src = 'https://github.com/mfussenegger/nvim-lint',
+	},
+	{
 		src = 'https://github.com/neovim/nvim-lspconfig',
 	},
 	{
@@ -78,6 +87,8 @@ vim.pack.add({
 })
 
 
+require("mason").setup()
+
 -- ---------------------------------------------------------------------------
 -- Load core configuration
 -- ---------------------------------------------------------------------------
@@ -85,7 +96,6 @@ require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 require("config.lsp")
-require("mason").setup()
 
 -- ---------------------------------------------------------------------------
 -- Plugin-specific configuration
@@ -102,5 +112,4 @@ require("plugins.nvim-tree")
 require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.faster")
-
 
