@@ -29,6 +29,9 @@ end
 
 vim.pack.add({
     {
+		src = "https://github.com/tahayvr/matteblack.nvim",
+    },
+    {
 		src = "https://github.com/ellisonleao/gruvbox.nvim",
 		version = vim.version.range('2.0.0'),
     },
@@ -96,13 +99,13 @@ require("config.keymaps")
 require("config.options")
 require("config.autocmd")
 require("config.lsp")
+require("config.colorscheme")
 
 -- ---------------------------------------------------------------------------
 -- Plugin-specific configuration
 -- ---------------------------------------------------------------------------
 require("plugins.autopairs")
 require("plugins.barbar")
-require("plugins.colorscheme")
 -- require("plugins.comment")
 require("plugins.fzf-lua")
 require("plugins.gitsigns")
