@@ -31,7 +31,8 @@ local options = {
 	smarttab = true, --indentation stuff
 	cindent = true,
 	autoindent = true,
-	tabstop = 4, --visual width of tab
+    shiftwidth = 4,
+    softtabstop = 4,
 	breakindent = true,
 	expandtab = true,
 
