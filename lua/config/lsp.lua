@@ -17,6 +17,9 @@ vim.lsp.config('clangd', {
 vim.lsp.config('omnisharp', {
         cmd = 'omnisharp'
 })
+vim.lsp.config('clang-format', {
+        cmd = 'clang-format'
+})
 vim.lsp.config('csharpier', {
         cmd = 'csharpier'
 })
@@ -28,10 +31,10 @@ vim.lsp.config('lua_ls', {
 
 -- Enable
 vim.lsp.enable({
-		'lua_ls',
-		'clangd',
-		'pyright',
-		'bashls',
-		'omnisharp',
+        'lua_ls',
+        'clangd',
+        'pyright',
+        'bashls',
+        'omnisharp',
         'csharpier'
 })

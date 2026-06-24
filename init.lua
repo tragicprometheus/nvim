@@ -17,7 +17,7 @@ is_linux = uname.sysname == "Linux"
 vim.g.have_nerd_font = true
 -- Optional: Windows-friendly shell configuration (PowerShell example)
 if is_windows then
-  vim.opt.shell = "bash.exe"
+  vim.opt.shell = "zsh.exe"
   vim.opt.shellcmdflag = "-i -l"
   vim.opt.shellquote = '"'
   vim.opt.shellxquote = ""
