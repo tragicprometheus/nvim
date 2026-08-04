@@ -15,13 +15,6 @@ is_windows = uname.sysname == "Windows_NT"
 is_linux = uname.sysname == "Linux"
 
 vim.g.have_nerd_font = true
--- Optional: Windows-friendly shell configuration (PowerShell example)
-if is_windows then
-  vim.opt.shell = "zsh.exe"
-  vim.opt.shellcmdflag = "-i -l"
-  vim.opt.shellquote = '"'
-  vim.opt.shellxquote = ""
-end
 
 -- Global Stuff
   vim.g.start_time = vim.fn.reltime()
