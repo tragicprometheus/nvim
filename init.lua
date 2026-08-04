@@ -98,7 +98,7 @@ require("mason").setup()
 require("config.keymaps")
 require("config.options")
 require("config.autocmd")
-require("config.lsp")
+-- require("config.lsp")
 require("config.colorscheme")
 
 -- ---------------------------------------------------------------------------
@@ -112,7 +112,7 @@ require("plugins.gitsigns")
 require("plugins.lualine")
 require("plugins.nvim-lint")
 require("plugins.nvim-tree")
-require("plugins.treesitter")
+-- require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.faster")
 
