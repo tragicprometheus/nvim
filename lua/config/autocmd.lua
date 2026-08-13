@@ -112,40 +112,44 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time. TODO: Check this
-  vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
+
+-- Vertical Split for Help windows
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*",
+  callback = function(args)
+    -- Only act on help buffers that are still displayed horizontally
+    if vim.bo[args.buf].filetype == "help" then
+      -- Move the help window to a vertical split on the right
+      vim.cmd("wincmd L")
+    end
+  end,
+})
 
 ---------------------------------------------------------------------------
 -- LSP Autocommands
 ---------------------------------------------------------------------------
--- vim.api.nvim_create_autocmd('LspAttach', {
---   callback = function(args)
---     local bufnr = args.buf
---     local map = function(mode, lhs, rhs, desc)
---       vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
---     end
---
--- 	map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
---     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
---     map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
---     map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
---     map('n', 'gr', vim.lsp.buf.references, 'References')
---     map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
---     map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
---     map('n', '<leader>F', function()
---       vim.lsp.buf.format({ async = true })
---     end, 'Format buffer')
---
---     -- Diagnostics
---         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
---         vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
---         vim.keymap.set('n', 'e', vim.diagnostic.open_float, opts)
---         vim.keymap.set('n', 'q', vim.diagnostic.setloclist, opts)
---   end,
--- })
+vim.api.nvim_create_autocmd('LspAttach', {
 
- -- Auto-lint on save
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---     callback = function()
---         require("lint").try_lint()
---     end,
--- })
+  group = vim.api.nvim_create_augroup('my.lsp.bufdir', {}),
+
+  callback = function(ev)
+
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
+    if client.root_dir then
+
+      vim.cmd.bcd(client.root_dir)
+
+    end
+
+  end,
+
+})
+
+-- Auto-lint on save
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
+})

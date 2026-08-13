@@ -75,8 +75,8 @@ end, { desc = "Prompt to change current working directory" })
 -- clear search highlighting
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
 
--- map("n", "<leader>s", ":%s//g<Left><Left>") --replace all
-map("n", "<leader>e", ":NvimTreeToggle<CR>") --open file explorer
+map("n", "<leader>s", ":%s//gcie<Left><Left><Left><Left><Left>") --replace all
+-- map("n", "<leader>e", ":NvimTreeToggle<CR>") --open file explorer
 map('t', '<Esc><Esc>', [[<C-\><C-n>:bd!<CR>]]) -- exits the terminal
 map('n', '<leader>z',  ":term<CR>i") --open term
 map("n", "<leader>w", ":w<CR>") --write but one less key
@@ -106,4 +106,13 @@ map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
 		vim.wo.relativenumber = true
 	end
 end)
+
+-- LSP Keymaps
+    map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
+    map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
+    map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
+    map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
+    map('n', 'gr', vim.lsp.buf.references, 'References')
+    map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
+    map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
 

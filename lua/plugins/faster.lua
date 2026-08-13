@@ -1,3 +1,3 @@
 require('faster').setup{
-		filesize = 5,
+		filesize = 50,
 }

@@ -16,7 +16,13 @@ wk.add({
 { "<leader>Q", desc = "close buf!" },
 { "<leader>U", desc = "close ALL buf" },
 { "<leader>nn", desc = "toggle relative nums" },
-{ "<leader>T", desc = "git status" },
+-- { "<leader>T", desc = "git status" },
 { "<leader>o", desc = "Open current file in default program" },
 { "<leader>cd", desc = "Change the current working directory" },
+{ "<leader>s", desc = "Find and replace in wholefiles"},
+{ "gd", desc = "Go to definition" },
+{ "gD", desc = "Go to declaration"},
+{ "gi", desc = "Go to implementation"},
+{ "<leader>rn", desc = "Rename symbol" },
+{ "<leader>ca", desc = "Code Action" }
 })

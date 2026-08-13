@@ -17,7 +17,7 @@ is_linux = uname.sysname == "Linux"
 vim.g.have_nerd_font = true
 -- Optional: Windows-friendly shell configuration (PowerShell example)
 if is_windows then
-  vim.opt.shell = "zsh.exe"
+  vim.opt.shell = "bash.exe"
   vim.opt.shellcmdflag = "-i -l"
   vim.opt.shellquote = '"'
   vim.opt.shellxquote = ""
@@ -29,64 +29,64 @@ end
 
 vim.pack.add({
     {
-		src = "https://github.com/tahayvr/matteblack.nvim",
+        src = "https://github.com/tahayvr/matteblack.nvim",
     },
     {
-		src = "https://github.com/ellisonleao/gruvbox.nvim",
-		version = vim.version.range('2.0.0'),
-    },
-	{
-		src = "https://github.com/mason-org/mason.nvim",
-	},
-	{
-		src = "https://github.com/ibhagwan/fzf-lua",
-	},
-	{
-		src = "https://github.com/folke/which-key.nvim",
-	},
-	{
-		src = "https://github.com/romgrk/barbar.nvim",
-	},
-	{
-		src = "https://github.com/nvim-tree/nvim-web-devicons",
-	},
-	{
-		src = "https://github.com/nvim-lualine/lualine.nvim",
+        src = "https://github.com/ellisonleao/gruvbox.nvim",
+        version = vim.version.range('2.0.0'),
     },
     {
-		src = "https://github.com/lewis6991/gitsigns.nvim",
+        src = "https://github.com/mason-org/mason.nvim",
     },
-	{
-		src = "https://github.com/nvim-tree/nvim-tree.lua",
-	},
-	{
-		src = "https://github.com/nvim-mini/mini.icons",
-	},
-	{
-		src = "https://github.com/windwp/nvim-autopairs",
-	},
-	{
-		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		version = 'main',
-	},
-	{
-		src = 'https://github.com/hrsh7th/nvim-cmp',
-	},
-	{
-		src = 'https://github.com/williamboman/mason-lspconfig.nvim',
-	},
-	{
-		src = 'https://github.com/mfussenegger/nvim-lint',
-	},
-	{
-		src = 'https://github.com/neovim/nvim-lspconfig',
-	},
-	{
-		src = 'https://github.com/pteroctopus/faster.nvim',
-	},
-	{
-		src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
-	},
+    {
+        src = "https://github.com/ibhagwan/fzf-lua",
+    },
+    {
+        src = "https://github.com/folke/which-key.nvim",
+    },
+    {
+        src = "https://github.com/romgrk/barbar.nvim",
+    },
+    {
+        src = "https://github.com/nvim-tree/nvim-web-devicons",
+    },
+    {
+        src = "https://github.com/nvim-lualine/lualine.nvim",
+    },
+    {
+        src = "https://github.com/lewis6991/gitsigns.nvim",
+    },
+    -- {
+    --  src = "https://github.com/nvim-tree/nvim-tree.lua",
+    -- },
+    {
+        src = "https://github.com/nvim-mini/mini.icons",
+    },
+    {
+        src = "https://github.com/windwp/nvim-autopairs",
+    },
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter",
+        version = 'main',
+    },
+    {
+        src = 'https://github.com/hrsh7th/nvim-cmp',
+    },
+    {
+        src = 'https://github.com/williamboman/mason-lspconfig.nvim',
+    },
+    {
+        src = 'https://github.com/mfussenegger/nvim-lint',
+    },
+    {
+        src = 'https://github.com/neovim/nvim-lspconfig',
+    },
+    {
+        src = 'https://github.com/pteroctopus/faster.nvim',
+    },
+    {
+        src = 'https://github.com/nvim-treesitter/nvim-treesitter-context',
+    },
 })
 
 
@@ -98,7 +98,7 @@ require("mason").setup()
 require("config.keymaps")
 require("config.options")
 require("config.autocmd")
--- require("config.lsp")
+require("config.lsp")
 require("config.colorscheme")
 
 -- ---------------------------------------------------------------------------
@@ -111,8 +111,8 @@ require("plugins.fzf-lua")
 require("plugins.gitsigns")
 require("plugins.lualine")
 require("plugins.nvim-lint")
-require("plugins.nvim-tree")
--- require("plugins.treesitter")
+-- require("plugins.nvim-tree")
+require("plugins.treesitter")
 require("plugins.which-key")
 require("plugins.faster")
 
